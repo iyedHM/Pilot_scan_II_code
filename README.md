@@ -37,19 +37,25 @@ After establishing a connection with your PC (no error message on the PC, and us
 
 #### a. Hardware Modifications
 
-For the Power Board, I also made some modifications. Initially, I tried to program it and encountered the same error as with the Sync Board. So, I followed the troubleshooting steps specified above. This time, the Supervisory Circuits Microprocessor Reset (CI3) was the source of the problem. I removed it and created a short circuit using the resistor R12 and some soldering material. Additionally, we removed the button (S1). After these changes, I was able to program the board successfully.
+For the Power Board, I made several modifications. Initially, when I tried to program the board, I encountered the same error as with the Sync Board. Following the troubleshooting steps mentioned earlier, I discovered that the issue was with the Supervisory Circuits Microprocessor Reset (CI3). To resolve this, I removed CI3 and created a short circuit using the resistor R12 and some soldering material. Additionally, I removed the button (S1). After these changes, I was able to successfully program the board.
 
-While programming, I attempted to perform an ADC reading but was unable to do so because the PIC16F54 does not have an ADC module. Fortunately, we found a PIC that has the same size and pin layout as the PIC16F54, which was the PIC16F186. With this new microcontroller, I was able to perform ADC readings and complete the program without any issues.
+During the programming process, I attempted to perform an ADC (Analog-to-Digital Converter) reading but was unable to do so because the PIC16F54 does not have an ADC module. Fortunately, we found a microcontroller with the same size and pin layout as the PIC16F54, which was the PIC16F186. With this new microcontroller, I was able to perform ADC readings and complete the program without any issues.
 
 #### b. Code
 
-In this code, I used TMR1 because it is a 16-bit timer with a prescaler of 1:8, which can produce a PWM at any required frequency.
+In this code, I used TMR1 because it is a 16-bit timer with a prescaler of 1:8, which can produce PWM (Pulse Width Modulation) at the required frequency.
 
-don't forget when usinf the ADC to use the /1023 given you are reading by 10 bits and the multiply the VDD(or Vref) that you have set 5v for our case 
+When using the ADC, remember to divide the reading by 1023, since it is a 10-bit reading. Then, multiply the result by the VDD (or Vref), which is set to 5V in our case.
 
-i made a test were if one of the cells of the battery is less the 3V we would see a blinking led for the respective cell (CELL1 --> LED1 , CELL2-->LED2 ,CELL3 --> LED3 , CELL4-->LED4)
+I conducted a test where, if the voltage of one of the battery cells drops below 3V, a corresponding LED will blink (e.g., CELL1 → LED1, CELL2 → LED2, CELL3 → LED3, CELL4 → LED4).
 
-The voltage interval that i'm working on is 12 v to 17 v so use the total voltage read i substract 12 and then multiply it by a 100 and then devide it by 5(17-12) , So i found the percentage /100 i use it to light up the led with specific threshold for our case we have less 25% the alert led is shining , between 25%  and 50% ony the first led (LED1) si shining then between 50% and 75 %  two led are shining and from 75% to 90% Three are lighted up and then between 90% and 100% the four leds are shininig 
+The voltage range I'm working with is from 12V to 17V. To calculate the total voltage read, I subtract 12, multiply by 100, and then divide by 5 (which is the difference between 17 and 12). This gives me the percentage (out of 100), which I use to light up the LEDs based on specific thresholds:
+
+- **Below 25%**: The alert LED is illuminated.
+- **25% to 50%**: Only the first LED (LED1) is illuminated.
+- **50% to 75%**: Two LEDs are illuminated.
+- **75% to 90%**: Three LEDs are illuminated.
+- **90% to 100%**: All four LEDs are illuminated.
 
 
 
