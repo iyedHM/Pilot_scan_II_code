@@ -61,3 +61,5 @@ The voltage range I'm working with is from 12V to 17V. To calculate the total vo
 
 ### 3. Sync Board + Power Board
 
+**Note:** The 8000 ticks I chose were not random; they should be compatible with the PIC that is reading it (in the Sync Board). It shouldn’t be too fast because we would have a high error rate, and it shouldn’t be too slow because with many (thousands) overflows of the timer used to decode the PWM, the measurement loses its precision. So, you need to find what is suitable for the implementation and the timer used, determine how many times the reception is going to overflow, and by that, you can set the frequency of the sender.
+
