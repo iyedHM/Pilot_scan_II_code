@@ -49,6 +49,8 @@ Resistors R8 and R9 were not soldered because ...
 
 **Note:** The switch (S2) is crucial for the proper functioning of the circuit; without it, programming will not be possible.
 
+**Note:** This boards has two different ground GND(the ground shared with the sync layer) and GND_BATT(refers to the ground of the battery)
+
 #### b. Code
 
 In this code, TMR1 was used because it is a 16-bit timer with a prescaler of 1:8, capable of producing PWM (Pulse Width Modulation) at the required frequency.
@@ -68,9 +70,22 @@ The voltage range being worked with is from 12V to 17V. To calculate the total v
 
 ### 3. Sync Board + Power Board
 
-the two boards are connected by the connector J8 from the power board and J1 from the sync board 
+the two boards are connected by the connector J8 from the power board and J1 from the sync board ; it should be at a height of 18 mm(with +2mm of uncertainty)
 
 **Note:** The 8000 ticks chosen were not random; they should be compatible with the PIC that is reading it (in the Sync Board). It should not be too fast to avoid a high error rate, and it should not be too slow to prevent loss of precision due to multiple (thousands) overflows of the timer used to decode the PWM. The suitable frequency for the implementation should be determined based on the timer used, considering how many times the reception will overflow, allowing for proper setting of the sender frequency.
 
-### 4. Linux Command Line Code (`Pilot_scan_V2.py`)
+### what to read next 
+-**`README_main.md`**: the `main.c` explained more in depth 
+
+
+-**`README_Pilot_scan_V2.md`**: the `Pilot_scan_V2.c` explained in depth
+
+
+-**`README_system.md`**: the `system.c` explained more in depth
+
+
+-**`README_test.md`**: the `test.c` explained more in depth
+
+
+
 
