@@ -1,4 +1,4 @@
-# Pilot Scan II Code
+# Pilot Scan II 
 
 ## Usage Manual
 
@@ -29,9 +29,9 @@ To ensure compatibility, the correct firmware that matches the specific PIC must
 
 Once the appropriate code has been located, it should be executed and its functionality verified. If it does not work, double-check that all configuration bits are correctly set, as different PICs within the same family may have varying configurations.
 
-After establishing a connection with the PC (indicated by no error message on the PC and verifying the port with "usbipd list" in the Windows command terminal), you can code in the `main.c` file located in the "Source" directory.
+After establishing a connection with the PC (indicated by no error message on the PC and verifying the port with "usbipd list" in the Windows command terminal), you can code in the `main_sync_board.c` file located in the "Source" directory.
 
-**Interrupts**: When using interrupts with this USB configuration, **do not declare interrupts in the main file**. Doing so will interfere with system interrupts (which can be found in `system.c`). Instead, integrate any custom interrupt within the system interrupt to ensure it is called correctly. An example can be found in the provided `system.c` file. Be cautious with using Global Interrupt Enable (GEI) and other interrupt flags and timers to avoid conflicts with system interrupts.
+**Interrupts**: When using interrupts with this USB configuration, **do not declare interrupts in the main file**. Doing so will interfere with system interrupts (which can be found in `system_sync_board.c`). Instead, integrate any custom interrupt within the system interrupt to ensure it is called correctly. An example can be found in the provided `system_sync_board.c` file. Be cautious with using Global Interrupt Enable (GEI) and other interrupt flags and timers to avoid conflicts with system interrupts.
 
 **Note:** the configuration bit LVP should be set to OFF or it would result in an non predectible stats for the RC3
 
@@ -75,16 +75,13 @@ the two boards are connected by the connector J8 from the power board and J1 fro
 **Note:** The 8000 ticks chosen were not random; they should be compatible with the PIC that is reading it (in the Sync Board). It should not be too fast to avoid a high error rate, and it should not be too slow to prevent loss of precision due to multiple (thousands) overflows of the timer used to decode the PWM. The suitable frequency for the implementation should be determined based on the timer used, considering how many times the reception will overflow, allowing for proper setting of the sender frequency.
 
 ### what to read next 
--**`README_main.md`**: the `main.c` explained more in depth 
+-**`README_sync_board.md`**: the `main_sync_board.c` and `system_sync_board.c` explained more in depth 
 
 
 -**`README_Pilot_scan_V2.md`**: the `Pilot_scan_V2.c` explained in depth
 
 
--**`README_system.md`**: the `system.c` explained more in depth
-
-
--**`README_test.md`**: the `test.c` explained more in depth
+-**`README_power_board.md`**: the `main_power_board.c` explained more in depth
 
 
 
