@@ -35,7 +35,7 @@
  * File:   test.c
  * Author: MSI
  *
- * Created on 6 août 2024, 14:42
+ * Created on 6 aoÃ»t 2024, 14:42
  */
 
 #define PWM LATBbits.LATB4
