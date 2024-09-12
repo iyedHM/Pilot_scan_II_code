@@ -75,14 +75,10 @@ the two boards are connected by the connector J8 from the power board and J1 fro
 **Note:** The 8000 ticks chosen were not random; they should be compatible with the PIC that is reading it (in the Sync Board). It should not be too fast to avoid a high error rate, and it should not be too slow to prevent loss of precision due to multiple (thousands) overflows of the timer used to decode the PWM. The suitable frequency for the implementation should be determined based on the timer used, considering how many times the reception will overflow, allowing for proper setting of the sender frequency.
 
 ### what to read next 
--**`README_sync_board.md`**: the `main_sync_board.c` and `system_sync_board.c` explained more in depth 
+-**`README_Sync_Board.md`**: the `main_sync_board.c` and `system_sync_board.c` explained more in depth 
 
 
 -**`README_Pilot_scan_V2.md`**: the `Pilot_scan_V2.c` explained in depth
 
 
--**`README_power_board.md`**: the `main_power_board.c` explained more in depth
-
-
-
-
+-**`README_Power_Board.md`**: the `main_power_board.c` explained more in depth
